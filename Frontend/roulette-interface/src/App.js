@@ -2,6 +2,8 @@ import React from 'react';
 import FrontPage from './FrontPage';
 import Lobby from './Lobby';
 import Game from './Game';
+import Stomp from 'stompjs';
+
 
 class App extends React.Component {
     constructor(props) {
@@ -42,6 +44,14 @@ class App extends React.Component {
             handle: handle,
             name: name,
             view: 1,
+        });
+        // Mark added this
+        const ws = ("ws://localhost:8080/sock");
+        var client = Stomp.client(ws);
+        client.connect({}, function() {
+            client.subscribe("yooo");
+            client.send("room blah", {"sender":"Casey","type":"JOIN"}); // Added user (notice type JOIN)
+            client.send("room yo", {"sender":"Casey","content":"test content","type":"CHAT"}); // Sent Message/vote
         });
     }
 
