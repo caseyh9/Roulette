@@ -1,12 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import FrontPage from './FrontPage';
-import Lobby from './Lobby';
-import Game from './Game';
-import Final from './Final';
+import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 
 //const routing = (
     // <Router>
@@ -20,7 +16,7 @@ import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
     //<App />
 //)
 
-ReactDOM.render(<FrontPage/>, document.getElementById('root'));
+ReactDOM.render(<App/>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

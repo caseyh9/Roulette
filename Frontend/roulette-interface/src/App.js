@@ -21,6 +21,7 @@ class App extends React.Component {
             handles: [],
         };
 
+
         this.changeFront = this.changeFront.bind(this);
         this.changeLobby = this.changeLobby.bind(this);
         this.changeGame = this.changeGame.bind(this);
@@ -55,7 +56,7 @@ class App extends React.Component {
     render() {
         switch (this.state.view) {
             case 0: return <FrontPage changeLobby={ this.changeLobby } />;
-            case 1: return <Lobby appState={this.state} startGame={ this.changeGame } endGame={this.changeFront} />;
+            case 1: return <Lobby appState={this.state} infinityWar={ this.changeGame } endGame={this.changeFront} />;
             case 2: return <Game appState={this.state} endGame={ this.changeFront } />;
         }
     }

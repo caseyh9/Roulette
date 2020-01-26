@@ -1,7 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
 import './Lobby.css';
-import { Link } from 'react-router-dom';
 
 class Lobby extends React.Component {
     constructor(props) {
@@ -13,11 +12,14 @@ class Lobby extends React.Component {
 
         // var players = createOrLoadGame(player, roomId);
         // var handles = addHandles(handle);
-        this.setState({
+        this.state = ({
             lobbyId: roomId,
             players: [], // players,
             handles: [], // handles,
+
         });
+        console.log(this.state);
+
     }
 
     loadGame(player, roomId) {
@@ -32,23 +34,15 @@ class Lobby extends React.Component {
 
     render() {
         return (
-            <div className="Lobby">
-            <header className="Lobby-header">
-            <img src={logo} className="Lobby-logo" alt="logo" />
-            <Link to='/Question'>Question</Link>
-            <p>
-                Edit <code>src/Lobby.js</code> and save to reload.
-            </p>
-            <a
-                className="Lobby-link"
-                href="https://reactjs.org"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-            Learn React
-            </a>
-            </header>
-            </div>
+          <div>
+            <button onClick={() => this.props.infinityWar(this.state.players, this.state.handles)}>
+                Start Game
+            </button>
+
+            <button onClick={() => this.props.endGame()}>
+                Quit
+            </button>
+          </div>
         );
     }
 }
