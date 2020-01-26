@@ -24,7 +24,14 @@ class Lobby extends React.Component {
 
     loadGame(player, roomId) {
         // load roomId from backend
-        //var playerz = createOrLoadGame(player, roomId);
+        var shiz = axios.get();
+        var p = []; var h = [];
+        for (i = 0; i < shiz.length(); i++) {
+            for (int j = 0; shiz[i][j] != "="; j++);
+            p[i] = substring(shiz[i], 0, j);
+            h[i] = substring(shiz[i], j, shiz[i].length());
+        }
+        createOrLoadGame(player, roomId);
         this.setState({
             lobbyId: roomId,
             players: [],

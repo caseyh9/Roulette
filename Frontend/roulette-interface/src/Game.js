@@ -8,7 +8,8 @@ class Game extends React.Component {
         this.state = ({
             index: 0,
             correct_index: 0,
-            options: [];
+            options: [],
+            player_data: [];
         });
         this.tweets = this.props.appState.tweets;
         this.handles = this.props.appState.handles;
@@ -16,19 +17,23 @@ class Game extends React.Component {
 
     }
 
-    getChoices(handles){
-        correct_index = Math.floor((Math.random() * handles.length())+1);
+    getChoices(){
+        correct_index = Math.floor((Math.random() * this.handles.length())+1);
         var arr = [];
         arr[correct_index] = this.tweets[index].handle;
 
         for(int i =0;i<4;i++){
             if(i != correct_index){
                 do {
-                    arr[i] = this.tweets[Math.floor((Math.random() * handles.length())+1)].handle;
+                    arr[i] = this.tweets[Math.floor((Math.random() * this.handles.length())+1)].handle;
                 } while(arr[i] == arr[correct_index]);
             }
         }
-        this.setState({options: arr});
+        this.setState({
+            options: arr,
+            player_data: axios.get(`ws://localhost:8000/getAllPlayerData=${this.props.appState.roomId}`
+        });
+
     }
 
     makeChoice(num) {
@@ -37,7 +42,7 @@ class Game extends React.Component {
     }
 
     render() {
-
+        getChoices();
         <div>
             <p>
                 {this.tweets.tweet}
