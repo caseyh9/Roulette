@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './Lobby.css';
+import axios from 'axios';
 
 class Lobby extends React.Component {
     constructor(props) {
@@ -26,12 +27,13 @@ class Lobby extends React.Component {
         // load roomId from backend
         var shiz = axios.get();
         var p = []; var h = [];
+        var i, j;
         for (i = 0; i < shiz.length(); i++) {
-            for (int j = 0; shiz[i][j] != "="; j++);
-            p[i] = substring(shiz[i], 0, j);
-            h[i] = substring(shiz[i], j, shiz[i].length());
+            for (j = 0; shiz[i][j] != "="; j++);
+                p[i] = shiz[i].substring(0, j);
+                h[i] = shiz[i].substring(j, shiz[i].length());
         }
-        createOrLoadGame(player, roomId);
+//        createOrLoadGame(player, roomId);
         this.setState({
             lobbyId: roomId,
             players: [],
