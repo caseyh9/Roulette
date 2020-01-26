@@ -6,28 +6,53 @@ class Game extends React.Component {
     constructor(props) {
         super(props);
         this.state = ({
-            choice: "";
+            index: 0,
+            correct_index: 0,
+            options: [];
         });
         this.tweets = this.props.appState.tweets;
-        window.setInterval(render(), milliseconds);
+        this.handles = this.props.appState.handles;
+        // window.setInterval(render(), milliseconds);
 
     }
 
+    getChoices(handles){
+        correct_index = Math.floor((Math.random() * handles.length())+1);
+        var arr = [];
+        arr[correct_index] = this.tweets[index].handle;
+
+        for(int i =0;i<4;i++){
+            if(i != correct_index){
+                do {
+                    arr[i] = this.tweets[Math.floor((Math.random() * handles.length())+1)].handle;
+                } while(arr[i] == arr[correct_index]);
+            }
+        }
+        this.setState({options: arr});
+    }
+
+    makeChoice(num) {
+        goNext(this.props.appState.player, this.state.options[num] , this.state.options[this.state.correct_index]);
+        this.setState({index: index+1});
+    }
+
     render() {
-        <p>
-            {this.tweets.tweet}
-        </p>
-        <button>
 
+        <div>
+            <p>
+                {this.tweets.tweet}
+                </p>
+        <button onClick={makeChoice(0)}>
+            {this.state.options[0]}
         </button>
-        <button>
-
+        <button onClick={makeChoice(1)}>
+            {this.state.options[1]}
         </button>
-        <button>
-
+        <button onClick={makeChoice(2)}>
+            {this.state.options[2]}
         </button>
-        <button>
-
+        <button onClick={makeChoice(3)}>
+            {this.state.options[3]}
         </button>
         return (
           <h1>Game Page</h1>

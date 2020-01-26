@@ -65,7 +65,7 @@ class App extends React.Component {
             tweets: axios.get(`ws://localhost:8000/getAllTweetData=${roomId}`)
         });
     }
-    
+
     goNext(name, choice, answer){
         client.send(code, {"sender": name, "content": choice, "answer": answer, "type": "CHAT"})
     }
@@ -74,7 +74,7 @@ class App extends React.Component {
         switch (this.state.view) {
             case 0: return <FrontPage changeLobby={ this.changeLobby } />;
             case 1: return <Lobby appState={this.state} infinityWar={ this.changeGame } endGame={this.changeFront} />;
-            case 2: return <Game appState={this.state} endGame={ this.changeFront } />;
+            case 2: return <Game appState={this.state} goNext={this.goNext} endGame={ this.changeFront } />;
         }
     }
 }
