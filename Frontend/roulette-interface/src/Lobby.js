@@ -7,22 +7,30 @@ class Lobby extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            lobbyId: "",
-            players: [],
-        }
+        var player = this.props.appState.name;
+        var roomId = this.props.appState.code;
+        var handle = this.props.appState.handle;
+
+        // var players = createOrLoadGame(player, roomId);
+        // var handles = addHandles(handle);
+        this.setState({
+            lobbyId: roomId,
+            players: [], // players,
+            handles: [], // handles,
+        });
     }
 
     loadGame(player, roomId) {
         // load roomId from backend
+        //var playerz = createOrLoadGame(player, roomId);
         this.setState({
             lobbyId: roomId,
-            players: [] /* FIXME: load players from backend */
-        })
+            players: [],
+            handles: [],
+        });
     }
 
     render() {
-        createGame(this.props.id);
         return (
             <div className="Lobby">
             <header className="Lobby-header">

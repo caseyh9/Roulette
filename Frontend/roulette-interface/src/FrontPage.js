@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './FrontPage.css';
-import Lobby from './Lobby';
+import App from './App';
 import { Route, Link } from 'react-router-dom';
 
 class FrontPage extends React.Component {
@@ -9,6 +9,7 @@ class FrontPage extends React.Component {
         super(props);
         this.state = {Game: "",
             code: "",
+            handle: "",
             name: ""
         };
 
@@ -32,6 +33,7 @@ class FrontPage extends React.Component {
     codeInput(e) {
         e.preventDefault();
         this.setState({name: this.refs.code.value});
+        console.log(this.state);
     }
 
     render() {
@@ -42,11 +44,15 @@ class FrontPage extends React.Component {
                 </p>
 
                 <input type="text" onChange={this.codeInput} ref="code"></input>
-                <input type="text" onChange={this.codeInput} ref="code"></input>
+                <input type="text" onChange={this.codeInput} ref="handle"></input>
                 <input type="text" onChange={this.nameInput} ref="name"></input>
 
-                <button onClick={this.newGame}>Create Game</button>
-                <button onClick={this.joinGame}>Join Game</button>
+                <button onClick={(e) => console.log(e)}>
+                    Create Game
+                </button>
+                <button onClick={(e) => console.log(e)}>
+                    Join Game
+                </button>
 
 
             </div>

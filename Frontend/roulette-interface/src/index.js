@@ -8,7 +8,7 @@ import Final from './Final';
 import * as serviceWorker from './serviceWorker';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 
-const routing = (
+//const routing = (
     // <Router>
     //     <div>
     //         <Route exact path='/' component={FrontPage} />
@@ -17,10 +17,10 @@ const routing = (
     //         <Route path='/Final' component={Final} />
     //     </div>
     // </Router>
-    <App />
-)
+    //<App />
+//)
 
-ReactDOM.render(routing, document.getElementById('root'));
+ReactDOM.render(<FrontPage/>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
