@@ -1,13 +1,12 @@
 import React from 'react';
 import logo from './logo.svg';
 import './FrontPage.css';
-import App from './App';
 import { Route, Link } from 'react-router-dom';
 
 class FrontPage extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {Game: "",
+        this.state = {
             code: "",
             handle: "",
             name: ""
@@ -15,6 +14,10 @@ class FrontPage extends React.Component {
 
         this.newGame = this.newGame.bind(this);
         this.joinGame = this.joinGame.bind(this);
+        this.codeInput = this.codeInput.bind(this);
+        this.nameInput = this.nameInput.bind(this);
+        this.handleInput = this.handleInput.bind(this);
+
     }
 
     newGame(e) {
@@ -26,14 +29,15 @@ class FrontPage extends React.Component {
     }
 
     nameInput(e) {
-        e.preventDefault();
         this.setState({name: this.refs.name.value});
     }
 
     codeInput(e) {
-        e.preventDefault();
-        this.setState({name: this.refs.code.value});
-        console.log(this.state);
+        this.setState({code: this.refs.code.value});
+    }
+
+    handleInput(e) {
+        this.setState({handle: this.refs.handle.value});
     }
 
     render() {
@@ -44,16 +48,12 @@ class FrontPage extends React.Component {
                 </p>
 
                 <input type="text" onChange={this.codeInput} ref="code"></input>
-                <input type="text" onChange={this.codeInput} ref="handle"></input>
+                <input type="text" onChange={this.handleInput} ref="handle"></input>
                 <input type="text" onChange={this.nameInput} ref="name"></input>
 
-                <button onClick={(e) => console.log(e)}>
-                    Create Game
+                <button onClick={() => this.props.changeLobby(this.state.code, this.state.handle, this.state.name)}>
+                    Join Lobby
                 </button>
-                <button onClick={(e) => console.log(e)}>
-                    Join Game
-                </button>
-
 
             </div>
         );

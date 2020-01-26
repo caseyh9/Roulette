@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './Lobby.css';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 class Lobby extends React.Component {
     constructor(props) {
@@ -13,16 +13,27 @@ class Lobby extends React.Component {
 
         // var players = createOrLoadGame(player, roomId);
         // var handles = addHandles(handle);
-        this.setState({
+        this.state = ({
             lobbyId: roomId,
             players: [], // players,
             handles: [], // handles,
+
         });
+        console.log(this.state);
+
     }
 
     loadGame(player, roomId) {
         // load roomId from backend
-        //var playerz = createOrLoadGame(player, roomId);
+        var shiz = axios.get();
+        var p = []; var h = [];
+        var i, j;
+        for (i = 0; i < shiz.length(); i++) {
+            for (j = 0; shiz[i][j] != "="; j++);
+                p[i] = shiz[i].substring(0, j);
+                h[i] = shiz[i].substring(j, shiz[i].length());
+        }
+//        createOrLoadGame(player, roomId);
         this.setState({
             lobbyId: roomId,
             players: [],
@@ -32,23 +43,15 @@ class Lobby extends React.Component {
 
     render() {
         return (
-            <div className="Lobby">
-            <header className="Lobby-header">
-            <img src={logo} className="Lobby-logo" alt="logo" />
-            <Link to='/Question'>Question</Link>
-            <p>
-                Edit <code>src/Lobby.js</code> and save to reload.
-            </p>
-            <a
-                className="Lobby-link"
-                href="https://reactjs.org"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-            Learn React
-            </a>
-            </header>
-            </div>
+          <div>
+            <button onClick={() => this.props.infinityWar(this.state.roomId, this.state.players, this.state.handles)}>
+                Start Game
+            </button>
+
+            <button onClick={() => this.props.endGame()}>
+                Quit
+            </button>
+          </div>
         );
     }
 }
