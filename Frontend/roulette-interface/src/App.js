@@ -3,6 +3,7 @@ import FrontPage from './FrontPage';
 import Lobby from './Lobby';
 import Game from './Game';
 import Stomp from 'stompjs';
+import axios from 'axios';
 
 
 class App extends React.Component {
@@ -21,6 +22,7 @@ class App extends React.Component {
             view: 0,
             players: [],
             handles: [],
+            tweets: []
         };
 
 
@@ -49,18 +51,23 @@ class App extends React.Component {
         const ws = ("ws://localhost:8080/sock");
         var client = Stomp.client(ws);
         client.connect({}, function() {
-            client.subscribe("yooo");
-            client.send("room blah", {"sender":"Casey","type":"JOIN"}); // Added user (notice type JOIN)
-            client.send("room yo", {"sender":"Casey","content":"test content","type":"CHAT"}); // Sent Message/vote
+            client.subscribe(code);
+            client.send(code, {"sender": name, "handle": handle, "type": "JOIN"})
+            //client.send("room yo", {"sender":"Casey","content":"test content","type":"CHAT"}); // Sent Message/vote
         });
     }
 
-    changeGame(players, handles) {
+    changeGame(roomId, players, handles) {
         this.setState({
             players: players,
             handles: handles,
             view: 2,
+            tweets: axios.get(`ws://localhost:8000/getAllTweetData=${roomId}`)
         });
+    }
+    
+    goNext(name, choice, answer){
+        client.send(code, {"sender": name, "content": choice, "answer": answer, "type": "CHAT"})
     }
 
     render() {

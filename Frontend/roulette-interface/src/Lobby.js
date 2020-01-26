@@ -35,7 +35,7 @@ class Lobby extends React.Component {
     render() {
         return (
           <div>
-            <button onClick={() => this.props.infinityWar(this.state.players, this.state.handles)}>
+            <button onClick={() => this.props.infinityWar(this.state.roomId, this.state.players, this.state.handles)}>
                 Start Game
             </button>
 

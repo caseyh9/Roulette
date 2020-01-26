@@ -5,21 +5,30 @@ import './Game.css';
 class Game extends React.Component {
     constructor(props) {
         super(props);
-
-        this.tweets = [
-          {
-            "text": "xd",
-            "correct": "a",
-            "answers": ["a", "b", "c", "d"]
-          },
-          /* {
-
-          }, */
-        ];
+        this.state = ({
+            choice: "";
+        });
+        this.tweets = this.props.appState.tweets;
+        window.setInterval(render(), milliseconds);
 
     }
 
     render() {
+        <p>
+            {this.tweets.tweet}
+        </p>
+        <button>
+
+        </button>
+        <button>
+
+        </button>
+        <button>
+
+        </button>
+        <button>
+
+        </button>
         return (
           <h1>Game Page</h1>
         );
