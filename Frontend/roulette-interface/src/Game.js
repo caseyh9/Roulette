@@ -38,27 +38,27 @@ class Game extends React.Component {
     }
 
     makeChoice(num) {
-        goNext(this.props.appState.player, this.state.options[num] , this.state.options[this.state.correct_index]);
-        this.setState({index: index+1});
+        this.goNext(this.props.appState.player, this.state.options[num] , this.state.options[this.state.correct_index]);
+        this.setState({index: this.state.index+1});
     }
 
     render() {
-        getChoices();
+        this.getChoices();
         return (
           <div>
               <p>
                   {this.tweets.tweet}
                   </p>
-          <button onClick={makeChoice(0)}>
+          <button onClick={this.makeChoice(0)}>
               {this.state.options[0]}
           </button>
-          <button onClick={makeChoice(1)}>
+          <button onClick={this.makeChoice(1)}>
               {this.state.options[1]}
           </button>
-          <button onClick={makeChoice(2)}>
+          <button onClick={this.makeChoice(2)}>
               {this.state.options[2]}
           </button>
-          <button onClick={makeChoice(3)}>
+          <button onClick={this.makeChoice(3)}>
               {this.state.options[3]}
           </button>
             <h1>Game Page</h1>

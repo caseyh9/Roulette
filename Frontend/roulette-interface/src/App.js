@@ -67,7 +67,7 @@ class App extends React.Component {
     }
 
     goNext(name, choice, answer){
-        client.send(code, {"sender": name, "content": choice, "answer": answer, "type": "CHAT"})
+        client.send(this.state.code, {"sender": name, "content": choice, "answer": answer, "type": "CHAT"})
     }
 
     render() {
